@@ -49,7 +49,6 @@ public class SecurityConfiguration {
         "/configuration/**"   
         ).permitAll()
         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
         .anyRequest().authenticated()
     )
     .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
