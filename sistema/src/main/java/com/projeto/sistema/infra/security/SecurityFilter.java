@@ -1,54 +1,53 @@
-package com.projeto.sistema.infra.security;
+// package com.projeto.sistema.infra.security;
 
-import java.io.IOException;
+// import java.io.IOException;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Component;
-import org.springframework.web.filter.OncePerRequestFilter;
+// import org.springframework.beans.factory.annotation.Autowired;
+// import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+// import org.springframework.security.core.context.SecurityContextHolder;
+// import org.springframework.security.core.userdetails.UserDetails;
+// import org.springframework.stereotype.Component;
+// import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.projeto.sistema.repo.RepoCliente;
-import com.projeto.sistema.service.TokenService;
+// import com.projeto.sistema.repo.RepoCliente;
+// import com.projeto.sistema.service.TokenService;
 
-import jakarta.servlet.FilterChain;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+// import jakarta.servlet.FilterChain;
+// import jakarta.servlet.ServletException;
+// import jakarta.servlet.http.HttpServletRequest;
+// import jakarta.servlet.http.HttpServletResponse;
 
-@Component
-public class SecurityFilter extends OncePerRequestFilter {
+// @Component
+// public class SecurityFilter extends OncePerRequestFilter {
 
-    @Autowired
-    private TokenService tokenService;
+//     @Autowired
+//     private TokenService tokenService;
 
-    @Autowired
-    private RepoCliente repoCliente;
+//     @Autowired
+//     private RepoCliente repoCliente;
 
-    @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-      var token = recoverToken(request);
-      if (token != null) {
-        var login = tokenService.validarToken(token.toString());
-        UserDetails cliente = repoCliente.findByEmail(login);
+//     @Override
+//     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+//       var token = recoverToken(request);
+//       if (token != null) {
+//         var login = tokenService.validarToken(token.toString());
+//         UserDetails cliente = repoCliente.findByEmail(login);
 
-        var authentication = new UsernamePasswordAuthenticationToken(cliente, null, cliente.getAuthorities());
-        SecurityContextHolder.getContext().setAuthentication(authentication);
+//         var authentication = new UsernamePasswordAuthenticationToken(cliente, null, cliente.getAuthorities());
+//         SecurityContextHolder.getContext().setAuthentication(authentication);
         
-      }
-      filterChain.doFilter(request, response);
+//       }
+//       filterChain.doFilter(request, response);
 
 
-    }
+//     }
 
-    private Object recoverToken(HttpServletRequest request) {
-      var authHeader = request.getHeader("Authorization");
-      if (authHeader == null || authHeader.isEmpty() || !authHeader.startsWith("Bearer ")) {
-        return null;
-      }
-      return authHeader.replace("Bearer ", "");
-    }
+//     private Object recoverToken(HttpServletRequest request) {
+//       var authHeader = request.getHeader("Authorization");
+//       if (authHeader == null || authHeader.isEmpty() || !authHeader.startsWith("Bearer ")) {
+//         return null;
+//       }
+//       return authHeader.replace("Bearer ", "");
+//     }
   
-}
+// }

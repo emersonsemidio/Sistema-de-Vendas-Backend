@@ -32,6 +32,7 @@ public class MercadoController {
     @Operation(summary = "Listar todos os mercados")
     @ApiResponse(responseCode = "200", description = "Mercados listados com sucesso")
     public ResponseEntity<Iterable<Mercado>> listarTodos() {
+        System.out.println("Listando todos os mercados...");
         return ResponseEntity.ok(mercadoService.listarTodos());
     }
 

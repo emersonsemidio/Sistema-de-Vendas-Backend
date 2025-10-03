@@ -3,6 +3,7 @@ package com.projeto.sistema.infra.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -27,8 +28,11 @@ public class SecurityConfiguration {
 
   public static final String SECURITY = "bearerAuth";
 
+  // @Autowired
+  // private SecurityFilter securityFilter;
+
   @Autowired
-  private SecurityFilter securityFilter;
+  private JwtAuthenticationFilter jwtAuthFilter;
 
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -44,9 +48,11 @@ public class SecurityConfiguration {
         "/webjars/**",
         "/configuration/**"   
         ).permitAll()
+        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
         .anyRequest().authenticated()
     )
-    .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
+    .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
     .build();
   }
 
