@@ -10,6 +10,8 @@ import javax.crypto.SecretKey;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import com.projeto.sistema.model.Cliente;
+
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
@@ -68,8 +70,11 @@ public class JwtService {
     }
 
     public String generateToken(UserDetails userDetails) {
+        Cliente cliente = (Cliente) userDetails; // Certifique-se de que UserDetails é do tipo Cliente
+
         return Jwts.builder()
                 .subject(userDetails.getUsername())
+                .claim("id", cliente.getId())
                 .issuedAt(new Date(System.currentTimeMillis()))
                 .expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24)) // 24 horas
                 .signWith(SECRET_KEY)
