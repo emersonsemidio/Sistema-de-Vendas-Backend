@@ -50,6 +50,7 @@ public class SecurityConfiguration {
         ).permitAll()
         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
         .requestMatchers(HttpMethod.GET, "/**").permitAll()
+        .requestMatchers(HttpMethod.POST, "/cadastro").permitAll()
         .anyRequest().authenticated()
     )
     .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)

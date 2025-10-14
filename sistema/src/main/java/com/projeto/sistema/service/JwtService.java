@@ -75,6 +75,8 @@ public class JwtService {
         return Jwts.builder()
                 .subject(userDetails.getUsername())
                 .claim("id", cliente.getId())
+                .claim("nome", cliente.getNome())
+                .claim("email", cliente.getEmail())
                 .issuedAt(new Date(System.currentTimeMillis()))
                 .expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24)) // 24 horas
                 .signWith(SECRET_KEY)
