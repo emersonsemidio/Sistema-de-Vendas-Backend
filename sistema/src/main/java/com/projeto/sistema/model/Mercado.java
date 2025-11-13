@@ -25,6 +25,7 @@ public class Mercado {
     private String telefone;
     private String endereco;
     private Boolean ativo = true;
+    private String imagemUrl;
     
     @OneToMany(mappedBy = "mercado", cascade = CascadeType.ALL)
     private List<Produto> produtos = new ArrayList<>();
@@ -105,6 +106,15 @@ public class Mercado {
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
+
+    public String getImagemUrl() {
+        return imagemUrl;
+    }
+
+    public void setImagemUrl(String imagemUrl) {
+        this.imagemUrl = imagemUrl;
+    }
+    
     
   
 }

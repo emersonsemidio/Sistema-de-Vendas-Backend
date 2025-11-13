@@ -71,6 +71,7 @@ public class ServiceMercado {
         mercado.setCnpj(dto.getCnpj());
         mercado.setTelefone(dto.getTelefone());
         mercado.setEndereco(dto.getEndereco());
+        mercado.setImagemUrl(dto.getImagemUrl());
         return mercado;
     }
 

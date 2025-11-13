@@ -11,8 +11,6 @@ public class ClienteRegisterDto {
   @Size(min = 3, max = 50, message = "O campo deve ter entre 3 e 50 caracteres")
   private String nome;
 
-  @NotNull
-  @NotBlank(message = "O campo email é obrigatório")
   @Size(min = 3, max = 50, message = "O campo deve ter entre 3 e 50 caracteres")
   private String email;
 
@@ -26,8 +24,6 @@ public class ClienteRegisterDto {
   @Size(min = 3, max = 100, message = "O campo deve ter entre 3 e 100 caracteres")
   private String endereco;
 
-  @NotNull
-  @NotBlank(message = "O campo CPF é obrigatório")
   @Size(min = 11, max = 14, message = "O campo deve ter entre 11 e 14 caracteres")
   private String cpf;
 

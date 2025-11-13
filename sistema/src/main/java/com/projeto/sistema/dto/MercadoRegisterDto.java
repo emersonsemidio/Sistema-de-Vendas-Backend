@@ -34,6 +34,9 @@ public class MercadoRegisterDto {
     @Size(min = 3, max = 100, message = "O campo deve ter entre 3 e 100 caracteres")
     private String endereco;
 
+    @Size(min = 5, max = 100, message = "A URL da imagem deve ter entre 5 e 100 caracteres")
+    private String imagemUrl;
+
     public String getNome() {
         return nome;
     }
@@ -72,6 +75,14 @@ public class MercadoRegisterDto {
 
     public void setEndereco(String endereco) {
         this.endereco = endereco;
+    }
+
+    public String getImagemUrl() {
+        return imagemUrl;
+    }
+
+    public void setImagemUrl(String imagemUrl) {
+        this.imagemUrl = imagemUrl;
     }
 
 }
