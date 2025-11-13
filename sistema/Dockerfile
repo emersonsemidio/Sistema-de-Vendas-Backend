@@ -26,3 +26,4 @@ EXPOSE 10000
 
 # Aqui você define a porta do Spring Boot
 ENTRYPOINT ["java", "-jar", "app.jar", "--server.port=10000"]
+
