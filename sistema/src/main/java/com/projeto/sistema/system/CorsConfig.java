@@ -19,6 +19,8 @@ public class CorsConfig {
         config.addAllowedOrigin("https://localhost:4200"); // ← Adicione esta linha
         config.addAllowedOrigin("http://localhost:8080");
         config.addAllowedOrigin("https://localhost:8080");
+        config.addAllowedOrigin("https://sistema-de-vendas-frontend.vercel.app");
+
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
         
