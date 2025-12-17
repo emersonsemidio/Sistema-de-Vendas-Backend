@@ -82,10 +82,21 @@ public class ServiceCliente {
     
     // Remover
     public boolean deletar(Long id) {
-        if (repoCliente.existsById(id)) {
+        boolean existe = repoCliente.existsById(id);
+        System.out.println("Cliente existe: " + existe);
+        this.logTodosClients();
+        if (existe) {
             repoCliente.deleteById(id);
             return true;
         }
         return false;
+    }
+
+    public void logTodosClients() {
+        Iterable<Cliente> clientes = listarTodos();
+        System.out.println("Lista de todos os clientes:");
+        for (Cliente cliente : clientes) {
+            System.out.println(cliente);
+        }
     }
 }

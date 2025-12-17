@@ -83,9 +83,12 @@ public class ClienteController {
         @ApiResponse(responseCode = "404", description = "Cliente não encontrado")
     })
     public ResponseEntity<Void> deletar(@PathVariable Long id) {
+        System.out.println("ID recebido para deleção: " + id);
         if (serviceCliente.deletar(id)) {
+            System.out.println("Cliente com ID " + id + " deletado com sucesso.");
             return ResponseEntity.noContent().build();
         } else {
+            System.out.println("Cliente com ID " + id + " não encontrado.");
             return ResponseEntity.notFound().build();
         }
     }
