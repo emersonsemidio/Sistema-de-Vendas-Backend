@@ -14,4 +14,8 @@ public interface RepoProduto extends CrudRepository<Produto, Long> {
 
   Optional<Iterable<Produto>> findByMercadoId(Long mercadoId);
 
+  List<Produto> findByQuantidadeLessThanEqual(Integer quantidade);
+
+
+
 }

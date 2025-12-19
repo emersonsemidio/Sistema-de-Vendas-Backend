@@ -52,8 +52,32 @@ public class ProdutoController {
             description = "Erro interno no servidor"
         )
     })
+
     public Iterable<Produto> listarTodos() {
         return produtoService.listarTodos();
+    }
+    
+
+    @GetMapping("/estoqueBaixo")
+    @Operation(
+            summary = "Listar todos os produtos com estoque baixo",
+            description = "Retorna uma lista com todos os produtos com estoque baixo no sistema"
+    )
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Produtos listados com sucesso",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = Produto.class))
+            ),
+            @ApiResponse(
+                    responseCode = "500",
+                    description = "Erro interno no servidor"
+            )
+    })
+
+    public Iterable<Produto> listarProdutosComEstoqueBaixo() {
+        return produtoService.listarProdutosComEstoqueBaixo();
     }
 
     @GetMapping("/{id}")

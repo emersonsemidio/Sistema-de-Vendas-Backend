@@ -9,6 +9,7 @@ import com.projeto.sistema.repo.RepoProduto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -23,6 +24,10 @@ public class ProdutoService {
     // Listar todos os produtos
     public Iterable<Produto> listarTodos() {
         return produtoRepository.findAll();
+    }
+
+    public List<Produto> listarProdutosComEstoqueBaixo() {
+        return produtoRepository.findByQuantidadeLessThanEqual(10);
     }
 
     // Buscar produto por ID
