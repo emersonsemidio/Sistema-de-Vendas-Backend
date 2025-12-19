@@ -35,6 +35,9 @@ public class ProdutoController {
     @Autowired
     private ServiceMercado serviceUsuario;
 
+    @Autowired
+    private ServiceMercado serviceMercado;
+
     @GetMapping
     @Operation(
         summary = "Listar todos os produtos",
@@ -111,7 +114,7 @@ public class ProdutoController {
     @ApiResponse(responseCode = "200", description = "Produto criado com sucesso")
     public ResponseEntity<MensagemResponseDto> salvar(@RequestBody @Valid ProdutoRegisterDto produto) {
         try {
-            serviceUsuario.buscarPorId(produto.getMercadoId()).orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+            // serviceUsuario.buscarPorId(produto.getMercadoId()).orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
             Produto novoProduto = produtoService.convertRegisterDtoToEntity(produto);
             Produto salvo = produtoService.salvar(novoProduto);
             MensagemResponseDto mensagem = new MensagemResponseDto("Produto criado com sucesso", "200", salvo);

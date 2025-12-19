@@ -79,15 +79,18 @@ public class ProdutoService {
     public Produto convertRegisterDtoToEntity(ProdutoRegisterDto dto) {
         Produto produto = new Produto();
 
-        Mercado mercado = repoMercado.findById(dto.getMercadoId())
-                .orElseThrow(() -> new RuntimeException("Mercado não encontrado"));
+        
+
+        // Mercado mercado = repoMercado.findById(dto.getMercadoId())
+        //         .orElseThrow(() -> new RuntimeException("Mercado não encontrado"));
         // Apenas seta os campos que vieram no DTO
         produto.setNome(dto.getNome()); // Pode ser null - não problema
         produto.setDescricao(dto.getDescricao());
         produto.setPreco(dto.getPreco());
         produto.setQuantidade(dto.getQuantidade());
         produto.setImagemUrl(dto.getImagemUrl());
-        produto.setMercado(mercado);
+        produto.setMercado(repoMercado.findByNome(dto.getNomeMercado())
+                .orElseThrow(() -> new RuntimeException("Mercado não encontrado")));
         return produto;
     }
 

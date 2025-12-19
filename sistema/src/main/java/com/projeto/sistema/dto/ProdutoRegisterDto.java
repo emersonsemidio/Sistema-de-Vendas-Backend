@@ -25,8 +25,13 @@ public class ProdutoRegisterDto {
 
   private String imagemUrl;
 
-  @NotNull(message = "O campo usuarioId é obrigatorio")
-  private Long mercadoId;
+  @NotNull(message = "O campo nomeMercado é obrigatorio")
+  private String nomeMercado;
+
+  // @NotNull(message = "O campo usuarioId é obrigatorio")
+  // private Long mercadoId;
+
+  
 
   // Getters and Setters
   public String getNome() {
@@ -69,13 +74,22 @@ public class ProdutoRegisterDto {
     this.imagemUrl = imagemUrl;
   }
 
-  public Long getMercadoId() {
-    return mercadoId;
+  // public Long getMercadoId() {
+  //   return mercadoId;
+  // }
+
+  // public void setMercadoId(Long usuarioId) {
+  //   this.mercadoId = usuarioId;
+  // }
+
+  public String getNomeMercado() {
+    return nomeMercado;
   }
 
-  public void setMercadoId(Long usuarioId) {
-    this.mercadoId = usuarioId;
+  public void setNomeMercado(String nomeMercado) {
+    this.nomeMercado = nomeMercado;
   }
+  
 
   @Override
     public String toString() {
@@ -85,7 +99,6 @@ public class ProdutoRegisterDto {
                 ", preco=" + preco +
                 ", quantidade=" + quantidade +
                 ", imagemUrl='" + imagemUrl + '\'' +
-                ", usuarioId=" + mercadoId +
                 '}';
     }
 
