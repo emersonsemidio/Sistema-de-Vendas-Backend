@@ -43,6 +43,18 @@ public class MercadoController {
         return ResponseEntity.ok(mercadoService.listarProdutosPorMercado(id));
     }
 
+    @GetMapping("/nome/{nome}")
+    @Operation(summary = "Buscar mercado por nome")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Mercado encontrado"),
+        @ApiResponse(responseCode = "404", description = "Mercado não encontrado")
+    })
+    public ResponseEntity<Mercado> buscarPorNome(@PathVariable String nome) {
+        return mercadoService.buscarPorNome(nome)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
     @GetMapping("/{id}")
     @Operation(summary = "Buscar mercado por ID")
     @ApiResponses(value = {

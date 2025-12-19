@@ -29,6 +29,10 @@ public class ServiceMercado {
         return repoProduto.findByMercadoId(mercadoId).orElseThrow(() -> new RuntimeException("Ocorreu um erro ao buscar produtos para o mercado com ID: " + mercadoId));
     }
 
+    public Optional<Mercado> buscarPorNome(String nome) {
+        return repoMercado.findByNome(nome);
+    }
+
     public Optional<Mercado> buscarPorId(Long id) {
         return repoMercado.findById(id);
     }
